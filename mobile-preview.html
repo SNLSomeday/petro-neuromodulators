@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Petro · Phone preview</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#efefec;color:#4a4a49;font-family:Helvetica,Arial,sans-serif}
+    header{min-height:60px;padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:22px;font-size:12px;flex-wrap:wrap}
+    header span{font-weight:600}a{color:inherit;text-underline-offset:4px}
+    .download{background:#4a4a49;color:#fff;padding:10px 14px;border-radius:5px;text-decoration:none;white-space:nowrap}
+    .download[hidden]{display:none}
+    iframe{display:block;width:min(390px,calc(100% - 24px));height:calc(100dvh - 78px);min-height:400px;margin:0 auto 18px;background:white;border:1px solid #cececa;border-radius:12px;box-shadow:0 4px 20px #0000000a}
+  </style>
+</head>
+<body>
+  <header><span>Phone preview · 390 px</span><a target="phone" href="./index.html?preview=melanie&amp;edition=refined#top">Beginning</a><a target="phone" href="./index.html?preview=melanie&amp;edition=refined#patterns">Your pattern</a><a class="download" id="download-page" href="downloads/neuromodulators-masterclass.zip" download="neuromodulators-masterclass.zip" hidden>Download ZIP</a></header>
+  <iframe name="phone" title="Interactive mobile version of the Petro masterclass" src="./index.html?preview=melanie&amp;edition=refined#patterns"></iframe>
+  <script>
+    // Show the download only where the companion archive is available.
+    if (location.protocol !== 'file:') {
+      const link = document.getElementById('download-page');
+      fetch(link.href, {method:'HEAD'}).then(response => {
+        if (response.ok && /zip/.test(response.headers.get('content-type') || '')) link.hidden = false;
+      }).catch(() => {});
+    }
+  </script>
+</body>
+</html>
